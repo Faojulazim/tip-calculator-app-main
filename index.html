@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="dist/style.css" rel="stylesheet" />
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body
+    class="font-spaceMono font-[700] bg-lightGrayishCyan min-h-[100dvh] flex items-center justify-center px-5"
+  >
+    <div class="max-w-[950px]">
+      <div class="flex flex-col items-center justify-center">
+        <div class="py-12 md:py-0 md:pb-12">
+          <img src="images/logo.svg" alt="" />
+        </div>
+        <div class="w-full bg-white rounded-t-3xl md:rounded-3xl py-8">
+          <form class="px-8 flex flex-col md:flex-row md:gap-x-12">
+            <div class="md:py-5">
+              <div class="flex flex-col items-end">
+                <div class="px-1 w-full">
+                  <div class="flex justify-between">
+                    <label for="billField" class="text-DarkGrayishCyan block"
+                      >Bill</label
+                    >
+                  </div>
+                  <input
+                    class="ml-auto w-full bg-veryLightGrayishCyan text-right focus:outline-none text-VeryDarkCyan placeholder:text-grayishCyan text-[24px] py-2 px-4 rounded-md mt-[0.4rem] bg-[url('images/icon-dollar.svg')] bg-no-repeat bg-[1rem]"
+                    type="text"
+                    id="billField"
+                    placeholder="0"
+                    autocomplete="off"
+                  />
+                </div>
+                <p for="billField" class="mt-1 ml-1 text-red-400 block hidden">
+                  Can't be zero
+                </p>
+              </div>
+              <div class="px-1 pt-8" data-parent="">
+                <label for="billField" class="text-DarkGrayishCyan block"
+                  >Select Tip %</label
+                >
+                <div class="flex flex-col items-end">
+                  <div
+                    class="text-[24px] text-white grid grid-cols-[repeat(2,minmax(100px,1fr))] md:grid-cols-[repeat(2,minmax(100px,1fr))] lg:grid-cols-[repeat(3,minmax(100px,1fr))] lg:grid-rows-[repeat(2,60px)] gap-4 pt-4"
+                    data-parent=""
+                  >
+                    <button
+                      class="bg-VeryDarkCyan py-2 rounded-md hover:bg-StrongCyan hover:text-VeryDarkCyan"
+                      id="tipBtn"
+                      data-special=""
+                    >
+                      5
+                    </button>
+                    <button
+                      class="bg-VeryDarkCyan py-2 rounded-md hover:bg-StrongCyan hover:text-VeryDarkCyan"
+                      id="tipBtn"
+                      data-special=""
+                    >
+                      10
+                    </button>
+                    <button
+                      class="bg-VeryDarkCyan py-2 rounded-md hover:bg-StrongCyan hover:text-VeryDarkCyan"
+                      id="tipBtn"
+                      data-special=""
+                    >
+                      15
+                    </button>
+                    <button
+                      class="bg-VeryDarkCyan py-2 rounded-md hover:bg-StrongCyan hover:text-VeryDarkCyan"
+                      id="tipBtn"
+                      data-special=""
+                    >
+                      25
+                    </button>
+                    <button
+                      class="bg-VeryDarkCyan py-2 rounded-md hover:bg-StrongCyan hover:text-VeryDarkCyan"
+                      id="tipBtn"
+                      data-special=""
+                    >
+                      50
+                    </button>
+                    <input
+                      type="text"
+                      class="bg-veryLightGrayishCyan py-2 rounded-md text-DarkGrayishCyan placeholder:text-DarkGrayishCyan text-right focus:outline-none px-5 text-VeryDarkCyan"
+                      placeholder="Custom"
+                      id="customField"
+                      autocomplete="off"
+                      maxlength="3"
+                    />
+                  </div>
+                  <p class="mt-1 ml-1 text-red-400 block hidden">
+                    Can't be zero
+                  </p>
+                </div>
+                <div class="flex flex-col items-end">
+                  <div class="px-1 pt-8 w-full">
+                    <label for="billField" class="text-DarkGrayishCyan block"
+                      >Number of People</label
+                    >
+                    <input
+                      class="ml-auto w-full bg-veryLightGrayishCyan text-right focus:outline-none text-VeryDarkCyan placeholder:text-grayishCyan text-[24px] py-2 px-4 rounded-md mt-[0.4rem] bg-[url('images/icon-person.svg')] bg-no-repeat bg-[1rem]"
+                      type="text"
+                      id="peopleField"
+                      autocomplete="off"
+                      placeholder="0"
+                    />
+                  </div>
+                  <p class="mt-1 ml-1 text-red-400 block hidden">
+                    Can't be zero
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="p-6 bg-VeryDarkCyan text-white mt-8 rounded-2xl pt-10 w-full md:mt-0 flex flex-col justify-between"
+            >
+              <div class="">
+                <div class="flex items-center justify-between">
+                  <h1 class="sm:text-[18px]">
+                    Tip Amount
+                    <span class="block text-grayishCyan">/ person</span>
+                  </h1>
+                  <h1
+                    class="text-[2.3rem] ftf:text-[2.5rem] leading-[0] text-StrongCyan lg:text-[3rem]"
+                    id="tipAmountField"
+                  >
+                    $0.00
+                  </h1>
+                </div>
+                <div class="flex items-center justify-between pt-6 md:pt-12">
+                  <h1 class="sm:text-[18px]">
+                    Total
+                    <span class="block text-grayishCyan">/ person</span>
+                  </h1>
+                  <h1
+                    class="text-[2.3rem] ftf:text-[2.5rem] leading-[0] text-StrongCyan lg:text-[3rem]"
+                    id="totalPersonField"
+                  >
+                    $0.00
+                  </h1>
+                </div>
+              </div>
+              <button
+                class="mt-10 text-2xl bg-StrongCyan rounded-md py-2 text-VeryDarkCyan w-full opacity-[0.40]"
+                disabled
+              >
+                RESET
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
