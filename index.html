@@ -38,7 +38,11 @@
                     autocomplete="off"
                   />
                 </div>
-                <p for="billField" class="mt-1 ml-1 text-red-400 block hidden">
+                <p
+                  for="billField"
+                  class="mt-1 ml-1 text-red-400 block hidden"
+                  data-para=""
+                >
                   Can't be zero
                 </p>
               </div>
@@ -95,7 +99,7 @@
                       maxlength="3"
                     />
                   </div>
-                  <p class="mt-1 ml-1 text-red-400 block hidden">
+                  <p class="mt-1 ml-1 text-red-400 block hidden" data-para="">
                     Can't be zero
                   </p>
                 </div>
@@ -112,7 +116,7 @@
                       placeholder="0"
                     />
                   </div>
-                  <p class="mt-1 ml-1 text-red-400 block hidden">
+                  <p class="mt-1 ml-1 text-red-400 block hidden" data-para="">
                     Can't be zero
                   </p>
                 </div>
@@ -149,6 +153,7 @@
               </div>
               <button
                 class="mt-10 text-2xl bg-StrongCyan rounded-md py-2 text-VeryDarkCyan w-full opacity-[0.40]"
+                id="reset_button"
                 disabled
               >
                 RESET

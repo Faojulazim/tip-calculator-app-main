@@ -5,6 +5,9 @@ const customField = document.getElementById("customField");
 const peopleField = document.getElementById("peopleField");
 const tipAll = document.querySelectorAll("button#tipBtn");
 const form = document.querySelector("form");
+const resetButton = document.querySelector("#reset_button");
+const allInput = document.querySelectorAll("input");
+const dataPara = document.querySelectorAll("[data-para]");
 let value = null;
 
 //function to validate the bill and people Field
@@ -31,6 +34,7 @@ function validation() {
       "hidden"
     );
   }
+
   if (!peopleFieldValue.length) {
     isValid = false;
     peopleField.parentElement.parentElement.lastElementChild.classList.remove(
@@ -49,6 +53,16 @@ function validation() {
     peopleField.parentElement.parentElement.lastElementChild.classList.add(
       "hidden"
     );
+  }
+  billField.value = billField.value
+    .replace(/[^0-9.]+/g, "")
+    .replace(/^\.|(\..*)\./g, "$1");
+
+  if (/[^\w\s]|[A-Za-z]/g.test(customField.value)) {
+    customField.value = customField.value.replace(/[^\w\s]|[A-Za-z]/g, "");
+  }
+  if (/[^\w\s]|[A-Za-z]/g.test(peopleFieldValue)) {
+    peopleField.value = peopleField.value.replace(/[^\w\s]|[A-Za-z]/g, "");
   }
   return isValid;
 }
@@ -75,14 +89,18 @@ customField.addEventListener("click", (e) => {
 });
 
 //logic for clicking the buttons
-tipAll.forEach((elem) => {
+tipAll.forEach((elem, index) => {
   elem.addEventListener("click", (e) => {
     e.preventDefault();
     value = elem.innerText;
     validation();
     getData();
     customField.value = "";
-
+    resetButton.disabled = false;
+    resetButton.classList.remove("opacity-[0.40]");
+    if (resetButton.disabled == false) {
+      rstBtn(allInput, index);
+    }
     elem.classList.add("bg-StrongCyan");
     elem.classList.remove("hover:text-VeryDarkCyan");
     elem.classList.remove("bg-VeryDarkCyan");
@@ -170,12 +188,51 @@ form.addEventListener("input", (e) => {
 billField.addEventListener("input", (e) => {
   validation();
   getData();
+  remove(document.getElementById("billField"));
 });
 customField.addEventListener("input", (e) => {
   validation();
   getData();
+  remove(document.getElementById("customField"));
 });
 peopleField.addEventListener("input", (e) => {
   validation();
   getData();
+  remove(document.getElementById("peopleField"));
 });
+
+//function to reset the values and calculation to default
+function remove(value) {
+  allInput.forEach((elem, index) => {
+    if (value.value) {
+      resetButton.disabled = false;
+      resetButton.classList.remove("opacity-[0.40]");
+      if (resetButton.disabled == false) {
+        rstBtn(elem, index);
+      }
+    }
+  });
+}
+
+//function to reset the values and calculation to default
+function rstBtn(elem, index) {
+  resetButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    elem.value = "";
+    dataPara.forEach((value) => {
+      value.classList.add("hidden");
+    });
+    tipAmountField.innerText = "$0.00";
+    totalPersonField.innerText = "$0.00";
+    if (tipAll[index].classList.contains("bg-StrongCyan")) {
+      tipAll[index].classList.remove("bg-StrongCyan");
+      tipAll[index].classList.add("hover:text-VeryDarkCyan");
+      tipAll[index].classList.add("bg-VeryDarkCyan");
+      tipAll[index].classList.remove("text-VeryDarkCyan");
+      tipAll[index].classList.add("hover:bg-StrongCyan");
+      value = null;
+    }
+    resetButton.disabled = true;
+    resetButton.classList.add("opacity-[0.40]");
+  });
+}
